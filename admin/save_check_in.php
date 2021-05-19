@@ -1,4 +1,4 @@
-<?phps
+<?php
     define( 'SHORTINIT', true );
     require_once( $_SERVER['DOCUMENT_ROOT'] . '/wordpress/wp-load.php' );
     global $wpdb;
@@ -35,10 +35,8 @@
 	if(empty($id)){
 		$save = $wpdb->query("INSERT INTO wp_checked set ".$data);
 		$id = $wpdb->insert_id;
-		echo 1;
 	}else{
 		$save = $wpdb->query("UPDATE wp_checked set ".$data." where id=".$id);
-		echo 1;
 	}
 	if($save){
 		$wpdb->query("UPDATE wp_rooms set status = 1 where id=".$rid);
