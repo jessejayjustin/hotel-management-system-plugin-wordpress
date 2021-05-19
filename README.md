@@ -1,1 +1,1 @@
-# hotel-management-system-wordpress
+# Hotel Management System Plugin WordPress
