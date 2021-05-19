@@ -17,7 +17,7 @@ if($_GET['id']){
 	//var_dump($booked_cid);
 	if($room_id > 0){
 		$room = $wpdb->get_results("SELECT * FROM wp_rooms where id =".$room_id, ARRAY_A);
-		$cat = $wpdb->get_results("SELECT * FROM wp_room_categories where id =".$room['category_id'], ARRAY_A);
+		$cat = $wpdb->get_results("SELECT * FROM wp_room_categories where id =".$room[0]['category_id'], ARRAY_A);
 	}else{
 		$cat = $wpdb->get_results("SELECT * FROM wp_room_categories where id =".$booked_cid, ARRAY_A);
 	}
@@ -36,7 +36,7 @@ if($_GET['id']){
 	}
 </style>
 <div class="container-fluid">
-	<p><b>Room : </b><?php echo isset($room['room']) ? $room['room'] : 'NA' ?></p>
+	<p><b>Room : </b><?php echo isset($room[0]['room']) ? $room[0]['room'] : 'NA' ?></p>
 	<p><b>Room Category : </b><?php echo $row['name'] ?></p>
 	<p><b>Room Price : </b><?php echo '$'.number_format($row['price'],2) ?></p>
 	<p><b>Reference no : </b><?php echo $$k['ref_no'] ?></p>
