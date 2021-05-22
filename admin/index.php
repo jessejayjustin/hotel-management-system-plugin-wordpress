@@ -6,7 +6,7 @@
 	<div class="col-lg-12">
 		<div class="row">
 			<!-- FORM Panel -->
-			<div class="col-md-5">
+			<div class="col-md-8">
 			<form action="" id="manage-category">
 				<div class="card">
 					<div class="card-header">
@@ -50,9 +50,9 @@
 			?>
 
 			<!-- Table Panel -->
-			<div class="col-md-8">
-				<div class="">
-					<div class="">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body">
 						<br>
 						<table class="table table-bordered table-hover">
 							<thead>
@@ -84,7 +84,7 @@
 									</td>
 									<td class="text-center">
 										<button class="btn btn-sm btn-primary edit_cat" type="button" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>" data-price="<?php echo $row['price'] ?>" data-cover_img="<?php echo $row['cover_img'] ?>">Edit</button>
-										<button class="btn btn-sm btn-danger delete_cat" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
+										<button style="margin-top:6px;" class="btn btn-sm btn-danger delete_cat" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
 									</td>
 								</tr>
 								<?php
@@ -114,9 +114,8 @@ $j(document).ready(function() {
       }
     }
     $j('#manage-category').submit(function(e){
-        e.preventDefault()
-        //start_load()
-   
+        e.preventDefault();
+     
         $j.ajax({
           url: 'http://localhost/wordpress/wp-content/plugins/hotel-booking/admin/save_cat.php?action=save_category',
           type: 'post',
@@ -128,33 +127,33 @@ $j(document).ready(function() {
 	            alert("Data successfully added",'success');
 	            $j('#manage-category').get(0).reset();
 	            setTimeout(function(){
-	              location.reload()
-	            },1500)
+	              location.reload();
+	            },1500);
 	        }
 	        else if(resp==2){
 	            alert("Data successfully updated",'success');
 	            $j('#manage-category').get(0).reset();
 	            setTimeout(function(){
-	              location.reload()
-	            },1500)
+	              location.reload();
+	            },1500);
 	        }
 	       }
 	    });
     });
     $j('.edit_cat').click(function(){
-		start_load()
-		var cat = $j('#manage-category')
-		cat.get(0).reset()
-		cat.find("[name='id']").val($j(this).attr('data-id'))
-		cat.find("[name='name']").val($j(this).attr('data-name'))
-		cat.find("[name='price']").val($j(this).attr('data-price'))
-		cat.find("#cimg").attr('src','http://localhost/wordpress/wp-content/plugins/hotel-booking/assets/img/'+$j(this).attr('data-cover_img'))
-		end_load()
+		start_load();
+		var cat = $j('#manage-category');
+		cat.get(0).reset();
+		cat.find("[name='id']").val($j(this).attr('data-id'));
+		cat.find("[name='name']").val($j(this).attr('data-name'));
+		cat.find("[name='price']").val($j(this).attr('data-price'));
+		cat.find("#cimg").attr('src','http://localhost/wordpress/wp-content/plugins/hotel-booking/assets/img/'+$j(this).attr('data-cover_img'));
+		end_load();
 	});
 	$j('.delete_cat').click(function(){
 		var id = $j(this).attr('data-id');
-		$j('#confirm_modal .modal-body').html("Are you sure to delete this category?")
-	    $j('#confirm_modal').modal('show')
+		$j('#confirm_modal .modal-body').html("Are you sure to delete this category?");
+	    $j('#confirm_modal').modal('show');
         confirm_del(id);
 	});
 	function confirm_del($id) {
@@ -171,14 +170,13 @@ $j(document).ready(function() {
 			data:{id:$id},
 			success:function(resp){
 				if(resp==1){
-					//alert("Data successfully deleted",'success')
 					setTimeout(function(){
-						location.reload()
+						location.reload();
 					},1500)
 
 				}
 			}
-		})
+		});
 	}
 });
 
