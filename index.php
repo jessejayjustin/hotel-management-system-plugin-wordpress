@@ -126,10 +126,10 @@ function shortcode_hotel_booking() {
 }
 add_shortcode( 'hotel_booking', 'shortcode_hotel_booking' );
 
-function theme_options_panel(){
-  add_menu_page('Theme page title', 'Hotel Management', 'manage_options', 'hotel-management', 'hotel_m_theme_func');
-  add_submenu_page( 'hotel-management', 'Booked page title', 'Booked', 'manage_options', 'theme-booked-settings', 'hotel_m_booked_func_settings');
-  add_submenu_page( 'FAQ menu label', 'FAQ page title', 'FAQ menu label', 'manage_options', 'theme-op-faq', 'wps_theme_func_faq');
+function theme_options_panel() {
+  add_menu_page('Theme page title', 'Hotel Management', 'manage_options', 'hotel-management', 'hotelm_theme_func');
+  add_submenu_page( 'hotel-management', 'Booked page title', 'Booked', 'manage_options', 'theme-booked-settings', 'hotelm_booked_func_settings');
+  add_submenu_page( 'hotel-management', 'Rooms page title', 'Rooms', 'manage_options', 'theme-rooms-settings', 'hotelm_rooms_func_settings');
 }
 add_action('admin_menu', 'theme_options_panel');
 
@@ -179,17 +179,17 @@ function load_admin_datatables_script() {
   wp_enqueue_script( 'admin_datatables_script', plugins_url() . '/hotel-booking/admin/assets/DataTables/datatables.min.js', false, '1.0.0' );
 }
 
-function hotel_m_theme_func() {
+function hotelm_theme_func() {
   global $wpdb;
   include(ADMIN . '/index.php');
 }
-function hotel_m_booked_func_settings(){
+function hotelm_booked_func_settings() {
   global $wpdb;
   include(ADMIN . '/booked.php');
 }
-function wps_theme_func_faq(){
-  echo '<div class="wrap"><div id="icon-options-general" class="icon32"><br></div>
-  <h2>FAQ</h2></div>';
+function hotelm_rooms_func_settings() {
+  global $wpdb;
+  include(ADMIN . '/rooms.php');
 }
 
 /*
